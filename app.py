@@ -41,8 +41,10 @@ if uploaded_file is not None:
                 prediction = model.predict(img_array)
                 prob = prediction[0][0]
                 
+                # Tampilkan angka asli untuk debugging
+                st.write(f"*(Debug: Nilai probabilitas = {prob:.4f})*")
+
                 # Logika Threshold (0.5)
-                # Karena model kita pakai Sigmoid, 0 = Pneumonia, 1 = Normal (sesuai urutan dataset)
                 if prob > 0.5:
                     hasil = "NORMAL"
                     warna = "green"
