@@ -40,9 +40,6 @@ if uploaded_file is not None:
                 # Prediksi
                 prediction = model.predict(img_array)
                 prob = prediction[0][0]
-                
-                # Tampilkan angka asli untuk debugging
-                st.write(f"*(Debug: Nilai probabilitas = {prob:.4f})*")
 
                 # Logika Threshold (0.5) - SUDAH DIPERBAIKI
                 if prob > 0.5:
