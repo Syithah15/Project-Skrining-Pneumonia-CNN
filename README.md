@@ -1,6 +1,6 @@
 # Implementasi CNN From Scratch untuk Klasifikasi Pneumonia pada Citra X-Ray Dada
 
-> Model Convolutional Neural Network yang dibangun dari nol (tanpa transfer learning) sebagai alat bantu skrining awal pneumonia, lengkap dengan aplikasi web interaktif berbasis Streamlit.
+> Model Convolutional Neural Network sebagai alat bantu skrining awal pneumonia, lengkap dengan aplikasi web interaktif berbasis Streamlit.
 
 ![Python](https://img.shields.io/badge/Python-3.x-blue)
 ![TensorFlow](https://img.shields.io/badge/TensorFlow-Keras-orange)
@@ -40,20 +40,24 @@ Banyak penelitian sebelumnya memakai arsitektur yang sangat kompleks atau model 
 
 Diuji pada 624 citra data uji.
 
+Pada proses training, akurasi training dan validasi sama-sama mencapai sekitar 0,95 dan loss terus menurun, tanpa tanda overfitting yang jelas.
+
 | Kelas | Precision | Recall | F1-score | Support |
 |-------|-----------|--------|----------|---------|
-| Pneumonia (Class 0) | 0.92 | 0.94 | 0.93 | 390 |
-| Normal (Class 1) | 0.90 | 0.87 | 0.89 | 234 |
-| **Accuracy** | | | **0.92** | 624 |
-| Macro avg | 0.91 | 0.91 | 0.91 | 624 |
-| Weighted avg | 0.92 | 0.92 | 0.92 | 624 |
+| Normal | 0.95 | 0.52 | 0.67 | 234 |
+| Pneumonia | 0.77 | 0.98 | 0.87 | 390 |
+| **Accuracy** | | | **0.81** | 624 |
+| Macro avg | 0.86 | 0.75 | 0.77 | 624 |
+| Weighted avg | 0.84 | 0.81 | 0.79 | 624 |
 
 **Confusion matrix**
 
-|  | Prediksi Pneumonia | Prediksi Normal |
+|  | Prediksi Normal | Prediksi Pneumonia |
 |--|:--:|:--:|
-| **Aktual Pneumonia** | 368 | 22 |
-| **Aktual Normal** | 30 | 204 |
+| **Aktual Normal** | 122 | 112 |
+| **Aktual Pneumonia** | 6 | 384 |
+
+Model sangat sensitif terhadap pneumonia (recall 0,98, hanya 6 kasus terlewat), tetapi masih sering salah menandai citra Normal sebagai Pneumonia (112 kasus). Untuk skrining awal ini lebih aman daripada melewatkan pasien, namun menjadi keterbatasan yang perlu diperbaiki.
 
 ## Struktur Repositori
 
@@ -82,7 +86,7 @@ streamlit run aplikasi.py
 ## Tautan Proyek
 
 - Aplikasi Streamlit: https://project-skrining-pneumonia-cnn-fmwhrggtzxiyz7motxhxia.streamlit.app/
-- Notebook Colab: https://colab.research.google.com/drive/1YnuqLN_PY4ycAWNtrB7IP9ebsjVibTvS?usp=sharing
+- Notebook Colab: https://colab.research.google.com/drive/1u_lyqYiK6DF0e0pPxq-mGl0BNAWUwOUx?usp=sharing
 - Dataset Kaggle: https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia
 
 ## Referensi
@@ -102,4 +106,5 @@ streamlit run aplikasi.py
 **Kelompok:** Kelompok 3
 
 ## Disclaimer
+
 Proyek ini dibuat untuk tujuan pembelajaran dan alat bantu skrining awal. Hasil prediksi **bukan pengganti diagnosis dokter atau tenaga radiologi**.
